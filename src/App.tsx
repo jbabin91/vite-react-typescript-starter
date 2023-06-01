@@ -1,34 +1,46 @@
+import '@/App.css';
+
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+
+import logo from '@/assets/logo.svg';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+    <div className="App">
+      <header className="App-header">
+        <img alt="logo" className="App-logo" src={logo} />
+        <p>Hello Vite + React!</p>
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          <button type="button" onClick={() => setCount((count) => count + 1)}>
+            Count is: {count}
+          </button>
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+        <p>
+          Edit <code>App.tsx</code> and save to test HMR updates.
+        </p>
+        <p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Learn React
+          </a>
+          {' | '}
+          <a
+            className="App-link"
+            href="https://vitejs.dev/guide/features.html"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Vite Docs
+          </a>
+        </p>
+      </header>
+    </div>
   );
 }
 

@@ -1,0 +1,72 @@
+name: App CI
+
+on:
+  push:
+    # Run on all branches
+    branches:
+      - '*'
+    # Run only if files modified are not docs
+    paths-ignore:
+      - '*.md'
+  pull_request:
+    # Run on all branches
+    branches:
+      - '*'
+    # Run only if files modified are not docs
+    paths-ignore:
+      - '*.md'
+
+jobs:
+  buildAndTest:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 🏗 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v3
+        with:
+          cache: pnpm
+          node-version-file: .nvmrc
+
+      - name: 🗂️ Install dependencies
+        run: pnpm i
+
+      - name: 🔨 Build
+        run: pnpm build
+
+      - name: 🧪 Test
+        run: pnpm test:ci
+
+      # Upload dist artifacts
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist/
+
+      # Upload coverage artifacts
+      - uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: coverage/lcov.info
+
+  coverage:
+    name: Coverage Analysis
+    needs: buildAndTest
+    runs-on: ubuntu-latest
+    steps:
+      # Download coverage artifacts
+      - uses: actions/download-artifact@v3
+        with:
+          name: coverage
+
+      - name: 📈 Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: lcov.info

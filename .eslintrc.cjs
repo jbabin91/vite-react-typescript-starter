@@ -7,13 +7,9 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
+    'plugin:unicorn/recommended',
+    'plugin:prettier/recommended',
   ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  plugins: ['react-refresh'],
-  rules: {
-    'react-refresh/only-export-components': 'warn',
-  },
   overrides: [
     {
       files: ['*.js', '*.cjs'],
@@ -21,7 +17,58 @@ module.exports = {
         'no-undef': 'off',
       },
     },
+    {
+      extends: ['plugin:testing-library/react'],
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+    },
   ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+  plugins: ['react-refresh', 'simple-import-sort', 'import', 'sort-keys-fix'],
+  rules: {
+    '@typescript-eslint/consistent-type-assertions': [
+      'error',
+      {
+        assertionStyle: 'as',
+        objectLiteralTypeAssertions: 'allow',
+      },
+    ],
+    '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      {
+        prefer: 'type-imports',
+      },
+    ],
+    'import/first': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-duplicates': 'error',
+    'react-refresh/only-export-components': 'warn',
+    'react/jsx-sort-props': [
+      'error',
+      {
+        callbacksLast: true,
+        ignoreCase: true,
+        noSortAlphabetically: false,
+        reservedFirst: true,
+        shorthandFirst: true,
+      },
+    ],
+    'simple-import-sort/exports': 'error',
+    'simple-import-sort/imports': 'error',
+    'sort-keys-fix/sort-keys-fix': 'error',
+    'unicorn/filename-case': [
+      'error',
+      {
+        cases: {
+          camelCase: true,
+          kebabCase: true,
+          pascalCase: true,
+        },
+      },
+    ],
+    'unicorn/prevent-abbreviations': 'off',
+  },
   settings: {
     react: { version: 'detect' },
   },
