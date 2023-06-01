@@ -41,8 +41,12 @@ export default defineConfig({
       dir: './node_modules/.vitest',
     },
     coverage: {
+      branches: 60,
+      functions: 60,
+      lines: 60,
       provider: 'c8',
       reporter: ['text', 'json-summary', 'json'],
+      statements: 60,
     },
     environment: 'happy-dom',
     globals: true,
