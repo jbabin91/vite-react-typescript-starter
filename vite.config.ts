@@ -42,7 +42,7 @@ export default defineConfig({
     },
     coverage: {
       provider: 'c8',
-      reporter: ['html', 'lcov'],
+      reporter: ['text', 'json-summary', 'json'],
     },
     environment: 'happy-dom',
     globals: true,
