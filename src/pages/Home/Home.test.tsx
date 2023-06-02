@@ -1,15 +1,15 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import App from '@/App';
+import { Home } from '.';
 
 test('count is 0 at first', () => {
-  render(<App />);
+  render(<Home />);
 
   expect(screen.getByText('Count is: 0')).toBeDefined();
 });
 
 test('increments count', () => {
-  render(<App />);
+  render(<Home />);
 
   fireEvent.click(screen.getByRole('button'));
 
