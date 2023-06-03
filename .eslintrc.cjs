@@ -14,12 +14,23 @@ module.exports = {
     {
       files: ['*.js', '*.cjs'],
       rules: {
+        '@typescript-eslint/no-var-requires': 'off',
         'no-undef': 'off',
+        'unicorn/prefer-module': 'off',
       },
     },
     {
       extends: ['plugin:testing-library/react'],
       files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+    },
+    {
+      files: ['**/components/ui/**/*.[jt]s?(x)'],
+      rules: {
+        '@typescript-eslint/ban-types': 'off',
+        'react-refresh/only-export-components': 'off',
+        'react/no-unknown-property': 'off',
+        'react/prop-types': 'off',
+      },
     },
   ],
   parser: '@typescript-eslint/parser',

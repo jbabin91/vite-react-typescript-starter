@@ -1,5 +1,3 @@
-import '@/App.css';
-
 import { RouterProvider } from '@tanstack/router';
 
 import { router } from '@/router';
