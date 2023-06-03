@@ -78,6 +78,7 @@ module.exports = {
         },
       },
     ],
+    'unicorn/no-useless-undefined': 'off',
     'unicorn/prevent-abbreviations': 'off',
   },
   settings: {

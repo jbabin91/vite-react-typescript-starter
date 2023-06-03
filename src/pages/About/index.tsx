@@ -5,12 +5,11 @@ import { useToast } from '@/components/ui/use-toast';
 export const About = () => {
   const { toast } = useToast();
   return (
-    <div className="App">
-      <div className="App-header">
+    <div>
+      <div>
         <h1 className="text-3xl font-bold underline">About</h1>
         <p>Hello from the about page</p>
         <Button
-          variant="outline"
           onClick={() => {
             toast({
               description: 'Your message has been sent.',
@@ -20,7 +19,6 @@ export const About = () => {
           Show Simple Toast
         </Button>
         <Button
-          variant="outline"
           onClick={() => {
             toast({
               description: 'There was a problem with your request.',
@@ -31,7 +29,6 @@ export const About = () => {
           Show Toast with Title
         </Button>
         <Button
-          variant="outline"
           onClick={() => {
             toast({
               action: <ToastAction altText="Try again">Try again</ToastAction>,
@@ -43,7 +40,6 @@ export const About = () => {
           Show Toast with Action
         </Button>
         <Button
-          variant="outline"
           onClick={() => {
             toast({
               action: <ToastAction altText="Try again">Try again</ToastAction>,
